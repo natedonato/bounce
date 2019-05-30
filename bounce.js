@@ -47,8 +47,8 @@ class GameView {
     }
 
     updatevel(dt){
-        this.object.vel.x = dt * 2 * (this.x - 90)/90;
-        this.object.vel.y = dt * 2 * (this.y - 90)/90;
+        this.object.vel.x += dt * 8 * (this.x - 90)/90;
+        this.object.vel.y += dt * 8 * (this.y - 90)/90;
     }
 
     updateObjectPos(dt){
@@ -56,11 +56,11 @@ class GameView {
         this.object.pos.y += this.object.vel.y * dt;
 
         
-        if(this.object.pos.x < 0){this.object.pos.x = 0;}
-        else if(this.object.pos.x + this.object.w *2 > this.canvaswidth){this.object.pos.x = this.canvaswidth - this.object.w * 2;}
+        if(this.object.pos.x < 0){this.object.pos.x = 0; this.object.vel.x = -this.object.vel.x * 0.8;}
+        else if (this.object.pos.x + this.object.w > this.canvaswidth) { this.object.pos.x = this.canvaswidth - this.object.w; this.object.vel.x = -this.object.vel.x * 0.8;}
 
-        if(this.object.pos.y < 0){this.object.pos.y = 0;}
-        else if(this.object.pos.y + this.object.h *2> this.canvasheight){this.object.pos.y = this.canvasheight -  this.object.h *2;}
+        if (this.object.pos.y < 0) { this.object.pos.y = 0; this.object.vel.y = -this.object.vel.y * 0.8;}
+        else if (this.object.pos.y + this.object.h * 2 > this.canvasheight) { this.object.pos.y = this.canvasheight - this.object.h * 2; this.object.vel.y = -this.object.vel.y * 0.8;}
 
         this.ctx.fillRect(this.object.pos.x, this.object.pos.y, this.object.w, this.object.h);
 
