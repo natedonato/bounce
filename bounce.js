@@ -21,13 +21,14 @@ class GameView {
         this.lastUpdated = 0;
         this.x = 90;
         this.y = 90;
+        this.handleTilt = this.handleTilt.bind(this);
 
     }
 
 
     bindtilt() {
         window.addEventListener("deviceorientation", this.handleTilt);
-
+        
     }
 
     handleTilt(event) {
