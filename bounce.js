@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () =>{
     canvas.height = window.innerHeight;
 
     ctx = canvas.getContext("2d");
-    ctx.fillRect(50,50, 100, 100);
+    // ctx.fillRect(50,50, 100, 100);
 
     const gameView = new GameView(0, ctx, canvas.height, canvas.width).start();
 });
@@ -19,6 +19,8 @@ class GameView {
         this.canvaswidth = canvaswidth;
         this.object = {pos: {x: 50, y: 50}, vel: {x: 0, y: 0}, w: 20, h: 20, maxspeed: 8};
         this.lastUpdated = 0;
+        this.x = 90;
+        this.y = 90;
 
     }
 
@@ -52,10 +54,10 @@ class GameView {
         this.object.pos.y += this.object.vel.y * dt;
         
         if(this.object.pos.x < 0){this.object.pos.x = 0;}
-        else if(this.object.pos.x + this.object.w > this.canvaswidth){this.object.pos.x = this.canvaswidth - this.object.w;}
+        else if(this.object.pos.x + this.object.w *2 > this.canvaswidth){this.object.pos.x = this.canvaswidth - this.object.w * 2;}
 
         if(this.object.pos.y < 0){this.object.pos.y = 0;}
-        else if(this.object.pos.y + this.object.h > this.canvasheight){this.object.pos.y = this.canvasheight - this.object.h;}
+        else if(this.object.pos.y + this.object.h *2> this.canvasheight){this.object.pos.y = this.canvasheight -  this.object.h *2;}
 
         this.ctx.fillRect(this.object.pos.x, this.object.pos.y, this.object.w, this.object.h);
 
@@ -63,6 +65,7 @@ class GameView {
 
     update(timestamp) {
         const dt = (timestamp - this.lastUpdated) / 10;
+        this.ctx.clearRect(0,0,this.canvaswidth, this.canvasheight);
         this.handleTilt();
         this.updateObjectPos(dt);
 
