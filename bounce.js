@@ -43,7 +43,7 @@ class GameView {
         this.x = x;
         this.y = y;
 
-        document.getElementById("y").innerHTML = this.y;
+        // document.getElementById("y").innerHTML = this.y;
     }
 
     updatevel(dt){
@@ -54,6 +54,8 @@ class GameView {
     updateObjectPos(dt){
         this.object.pos.x += this.object.vel.x * dt;
         this.object.pos.y += this.object.vel.y * dt;
+        document.getElementById("y").innerHTML = this.object.pos.y;
+
         
         if(this.object.pos.x < 0){this.object.pos.x = 0;}
         else if(this.object.pos.x + this.object.w *2 > this.canvaswidth){this.object.pos.x = this.canvaswidth - this.object.w * 2;}
