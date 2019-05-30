@@ -22,7 +22,7 @@ class GameView {
         this.x = 90;
         this.y = 90;
         this.handleTilt = this.handleTilt.bind(this);
-        this.friction = 0.8;
+        this.friction = 0.95;
     }
 
 
@@ -59,8 +59,8 @@ class GameView {
     updateObjectPos(dt){
         this.object.pos.x += this.object.vel.x * dt;
         this.object.pos.y += this.object.vel.y * dt;
-        this.object.vel.x *= this.friction;
-        this.object.vel.y *= this.friction;
+        // this.object.vel.x *= this.friction;
+        // this.object.vel.y *= this.friction;
 
         
         if(this.object.pos.x < 0){this.object.pos.x = 0; this.object.vel.x = -this.object.vel.x * 0.8;}
