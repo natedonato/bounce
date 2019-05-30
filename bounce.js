@@ -22,18 +22,17 @@ class GameView {
         this.x = 90;
         this.y = 90;
         this.handleTilt = this.handleTilt.bind(this);
-
     }
 
 
     bindtilt() {
         window.addEventListener("deviceorientation", this.handleTilt);
-        
+
     }
 
     handleTilt(event) {
-        let x = event.beta;
-        let y = event.gamma;
+        let y = event.beta;
+        let x = event.gamma;
 
         if (x > 90) { x = 90; }
         if (x < -90) { x = -90; } // keep device rightside up
@@ -50,8 +49,6 @@ class GameView {
     updatevel(dt){
         this.object.vel.x = dt * 2 * (this.x - 90)/90;
         this.object.vel.y = dt * 2 * (this.y - 90)/90;
-        document.getElementById("y").innerHTML = `dt: ${dt}, y: ${this.y}`;
-
     }
 
     updateObjectPos(dt){
