@@ -1,5 +1,5 @@
 
-
+let gameView;
 document.addEventListener("DOMContentLoaded", () =>{
     canvas = document.getElementById("canvas");
     canvas.width = window.innerWidth;
@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () =>{
     ctx = canvas.getContext("2d");
     // ctx.fillRect(50,50, 100, 100);
 
-    const gameView = new GameView(0, ctx, canvas.height, canvas.width).start();
+    gameView = new GameView(0, ctx, canvas.height, canvas.width).start();
 });
 
 
@@ -40,8 +40,10 @@ class GameView {
 
         x += 90;
         y += 90;
+        
         this.x = x;
         this.y = y;
+        document.getElementById("x").innerHTML = this.x;
     }
 
     handleTilt(){
@@ -64,6 +66,7 @@ class GameView {
     }
 
     update(timestamp) {
+        debugger;
         const dt = (timestamp - this.lastUpdated) / 10;
         this.ctx.clearRect(0,0,this.canvaswidth, this.canvasheight);
         this.handleTilt();
