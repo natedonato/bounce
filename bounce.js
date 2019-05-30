@@ -40,10 +40,10 @@ class GameView {
         x += 90;
         y += 90;
         document.getElementById("x").innerHTML = x;
-        document.getElementById("y").innerHTML = y;
         this.x = x;
         this.y = y;
 
+        document.getElementById("y").innerHTML = this.y;
     }
 
     updatevel(dt){
