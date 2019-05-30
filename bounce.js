@@ -24,14 +24,13 @@ class GameView {
 
     }
 
+
     bindtilt() {
-
-
-        window.addEventListener("deviceorientation", this.recordTilt);
+        window.addEventListener("deviceorientation", this.handleTilt);
 
     }
 
-    recordTilt(event) {
+    handleTilt(event) {
         let x = event.beta;
         let y = event.gamma;
 
@@ -40,15 +39,16 @@ class GameView {
 
         x += 90;
         y += 90;
-        
+        document.getElementById("x").innerHTML = x;
+        document.getElementById("y").innerHTML = y;
         this.x = x;
         this.y = y;
-        document.getElementById("x").innerHTML = this.x;
+
     }
 
-    handleTilt(){
-        this.object.vel.x = 5 * (this.x - 90)/90;
-        this.object.vel.y = 5 * (this.y - 90)/90;
+    updatevel(dt){
+        this.object.vel.x = dt * 2 * (this.x - 90)/90;
+        this.object.vel.y = dt * 2 * (this.y - 90)/90;
     }
 
     updateObjectPos(dt){
@@ -66,10 +66,9 @@ class GameView {
     }
 
     update(timestamp) {
-        debugger;
         const dt = (timestamp - this.lastUpdated) / 10;
         this.ctx.clearRect(0,0,this.canvaswidth, this.canvasheight);
-        this.handleTilt();
+        this.updatevel(dt);
         this.updateObjectPos(dt);
 
         this.lastUpdated = timestamp;
