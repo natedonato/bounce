@@ -39,9 +39,9 @@ class GameView {
 
         x += 90;
         y += 90;
-        document.getElementById("x").innerHTML = x;
         this.x = x;
         this.y = y;
+        document.getElementById("x").innerHTML = this.y;
 
         // document.getElementById("y").innerHTML = this.y;
     }
@@ -49,12 +49,13 @@ class GameView {
     updatevel(dt){
         this.object.vel.x = dt * 2 * (this.x - 90)/90;
         this.object.vel.y = dt * 2 * (this.y - 90)/90;
+        document.getElementById("y").innerHTML = `dt: ${dt}, y: ${this.y}`;
+
     }
 
     updateObjectPos(dt){
         this.object.pos.x += this.object.vel.x * dt;
         this.object.pos.y += this.object.vel.y * dt;
-        document.getElementById("y").innerHTML = this.object.pos.y;
 
         
         if(this.object.pos.x < 0){this.object.pos.x = 0;}
