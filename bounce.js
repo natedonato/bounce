@@ -41,7 +41,7 @@ class GameView {
         y += 90;
         this.x = x;
         this.y = y;
-        document.getElementById("x").innerHTML = this.y;
+        // document.getElementById("x").innerHTML = this.y;
 
         // document.getElementById("y").innerHTML = this.y;
     }
