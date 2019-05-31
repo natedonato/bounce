@@ -93,7 +93,8 @@ class GameView {
             this.blipSound.play();
         } else {
             this.blipSound.pause();
-            this.blipSound.currentTime = 0
+            this.blipSound.currentTime = 0;
+            this.blipSound.play();
         }
     }
 
