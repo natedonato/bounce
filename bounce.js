@@ -22,12 +22,13 @@ class GameView {
         this.x = 90;
         this.y = 90;
         this.handleTilt = this.handleTilt.bind(this);
+        this.blipSound = new Audio('./blip.wav');
+        this.blipSound.volume = 0.2;
     }
 
 
     bindtilt() {
         window.addEventListener("deviceorientation", this.handleTilt);
-
     }
 
     handleTilt(event) {
@@ -64,11 +65,25 @@ class GameView {
         this.object.pos.y += this.object.vel.y * dt;
 
         
-        if(this.object.pos.x < 0){this.object.pos.x = 0; this.object.vel.x = -this.object.vel.x * 0.8;}
-        else if (this.object.pos.x + this.object.w > this.canvaswidth) { this.object.pos.x = this.canvaswidth - this.object.w; this.object.vel.x = -this.object.vel.x * 0.8;}
+        if(this.object.pos.x < 0){
+            this.object.pos.x = 0; 
+            this.blipSound.play();
+            this.object.vel.x = -this.object.vel.x * 0.9;
+        
+        }
+        else if (this.object.pos.x + this.object.w > this.canvaswidth) { 
+            this.object.pos.x = this.canvaswidth - this.object.w; 
+            this.blipSound.play();
+            this.object.vel.x = -this.object.vel.x * 0.8;}
 
-        if (this.object.pos.y < 0) { this.object.pos.y = 0; this.object.vel.y = -this.object.vel.y * 0.8;}
-        else if (this.object.pos.y + this.object.h * 2 > this.canvasheight) { this.object.pos.y = this.canvasheight - this.object.h * 2; this.object.vel.y = -this.object.vel.y * 0.8;}
+        if (this.object.pos.y < 0) { 
+            this.object.pos.y = 0; 
+            this.blipSound.play();
+            this.object.vel.y = -this.object.vel.y * 0.9;}
+        else if (this.object.pos.y + this.object.h * 2 > this.canvasheight) { 
+            this.object.pos.y = this.canvasheight - this.object.h * 2; 
+            this.object.vel.y = -this.object.vel.y * 0.8;
+            this.blipSound.play();}
 
         this.ctx.fillRect(this.object.pos.x, this.object.pos.y, this.object.w, this.object.h);
 
