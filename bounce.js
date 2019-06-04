@@ -21,7 +21,7 @@ class GameView {
         this.ctx = ctx;
         this.canvasheight = canvasheight;
         this.canvaswidth = canvaswidth;
-        this.object = {pos: {x: 50, y: 50}, vel: {x: 0, y: 0}, w: 75, h: 75, maxspeed: 16};
+        this.object = {pos: {x: 50, y: 50}, vel: {x: 0, y: 0}, w: 75, h: 75, maxspeed: 20};
         this.lastUpdated = 0;
         this.x = 90;
         this.y = 90;
