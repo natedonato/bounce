@@ -1,6 +1,10 @@
 
 let gameView;
 document.addEventListener("DOMContentLoaded", () =>{
+
+    var img = new Image();
+    img.src = "./emoji.svg";
+
     canvas = document.getElementById("canvas");
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -8,22 +12,23 @@ document.addEventListener("DOMContentLoaded", () =>{
     ctx = canvas.getContext("2d");
     // ctx.fillRect(50,50, 100, 100);
 
-    gameView = new GameView(0, ctx, canvas.height, canvas.width).start();
+    gameView = new GameView(0, ctx, canvas.height, canvas.width, img).start();
 });
 
 
 class GameView {
-    constructor(game, ctx, canvasheight, canvaswidth) {
+    constructor(game, ctx, canvasheight, canvaswidth, img) {
         this.ctx = ctx;
         this.canvasheight = canvasheight;
         this.canvaswidth = canvaswidth;
-        this.object = {pos: {x: 50, y: 50}, vel: {x: 0, y: 0}, w: 20, h: 20, maxspeed: 16};
+        this.object = {pos: {x: 50, y: 50}, vel: {x: 0, y: 0}, w: 40, h: 40, maxspeed: 16};
         this.lastUpdated = 0;
         this.x = 90;
         this.y = 90;
         this.handleTilt = this.handleTilt.bind(this);
         this.blipSound = new Audio('./blip.wav');
         this.blipSound.volume = 0.2;
+        this.img = img;
     }
 
 
@@ -85,7 +90,8 @@ class GameView {
             this.object.vel.y = -this.object.vel.y * 0.8;
             this.play();}
 
-        this.ctx.fillRect(this.object.pos.x, this.object.pos.y, this.object.w, this.object.h);
+        // this.ctx.fillRect(this.object.pos.x, this.object.pos.y, this.object.w, this.object.h);
+        this.ctx.drawImage(this.img, this.object.pos.x, this.object.pos.y, this.object.w, this.object.h);
     }
 
     play(){
