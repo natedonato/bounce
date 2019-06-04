@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () =>{
 
 class GameView {
     constructor(game, ctx, canvasheight, canvaswidth, img) {
-        this.ctx = ctx;s
+        this.ctx = ctx;
         this.canvasheight = canvasheight;
         this.canvaswidth = canvaswidth;
         this.object = {pos: {x: 50, y: 50}, vel: {x: 0, y: 0}, w: 75, h: 75, maxspeed: 14};
