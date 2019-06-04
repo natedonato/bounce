@@ -54,13 +54,15 @@ class GameView {
 
     updatevel(dt){
         this.object.vel.x += dt * 8 * (this.x - 90)/90;
+
         const maxspeed = this.object.maxspeed;
         if(this.object.vel.x > maxspeed){this.object.vel.x = maxspeed;}
         
         if(this.object.vel.x < -maxspeed){this.object.vel.x = -maxspeed;}
         
         this.object.vel.y += dt * 8 * (this.y - 90)/90;
-        
+
+
         if (this.object.vel.y > maxspeed) { this.object.vel.y = maxspeed; }
         if (this.object.vel.y < -maxspeed) { this.object.vel.y = -maxspeed; }
     }
@@ -68,6 +70,7 @@ class GameView {
     updateObjectPos(dt){
         this.object.pos.x += this.object.vel.x * dt;
         this.object.pos.y += this.object.vel.y * dt;
+        
 
         
         if(this.object.pos.x < 0){
